@@ -24,7 +24,7 @@ router.post('/todo', function(req, res, next) {
     tasks: [req.body.task],
   })
 
-  res.send({ msg: "user added" });
+  res.send({ msg: "User added" });
 });
 
 router.get('/user/:id', function(req, res, next) {
