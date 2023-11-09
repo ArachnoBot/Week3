@@ -4,7 +4,7 @@ const router = express.Router();
 data = []
 
 router.get('/', function(req, res, next) {
-  res.render('index', {msg: "shizzle"})
+  res.render('index')
 })
 
 router.post('/todo', function(req, res, next) {
@@ -14,7 +14,7 @@ router.post('/todo', function(req, res, next) {
   for (let item of data) {
     if (item.name == reqName) {
       item.tasks.push(reqTask)
-      res.send({ msg: "Client added" });
+      res.send({ msg: "Todo added" });
       return
     }
   }
@@ -24,7 +24,7 @@ router.post('/todo', function(req, res, next) {
     tasks: [req.body.task],
   })
 
-  res.send({ msg: "Client added" });
+  res.send({ msg: "user added" });
 });
 
 router.get('/user/:id', function(req, res, next) {
