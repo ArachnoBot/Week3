@@ -25,6 +25,7 @@ async function send() {
 async function search() {
     const searchData = document.getElementById("search-name").value
     const feedbackElement = document.getElementById("feedback")
+    const userData = document.getElementById("tasks")
 
     const url = "/user/" + searchData
 
@@ -40,8 +41,28 @@ async function search() {
                 console.log(task)
                 taskList += " " + task
             }
-            feedbackElement.textContent = data.name + ":" + taskList
+            feedbackElement.textContent = data.name
+            userData.textContent = taskList
+            deleteBtn = document.createElement("input")
+            deleteBtn.type = "button"
+            deleteBtn.value = "delete"
+            deleteBtn.id = "delete-user"
+            document.body.appendChild(deleteBtn)
+            deleteBtn.addEventListener("click", deleteData)
         }
     })
+}
 
+function deleteData() {
+    const feedbackElement = document.getElementById("feedback")
+    const userData = document.getElementById("tasks")
+    const url = "/user/" + feedbackElement.textContent
+    fetch(url, {
+        method: "DELETE",
+    })
+    .then(response => response.json())
+    .then(data => {
+        feedbackElement.textContent = data.msg
+        userData.textContent = ""
+    })
 }

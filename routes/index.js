@@ -41,5 +41,19 @@ router.get('/user/:id', function(req, res, next) {
   res.send({ msg: "User not found" });
 })
 
+router.delete('/user/:id', function(req, res, next) {
+  const id = req.params.id
+  for (let item of data) {
+    console.log(item.name, id)
+    if (item.name == id) {
+      data.pop(data.indexOf(item))
+      res.send({ msg: "User deleted" })
+      return
+    }
+  }
+
+  res.send({ msg: "User not found" });
+})
+
 
 module.exports = router;
