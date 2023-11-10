@@ -37,9 +37,8 @@ async function search() {
             console.log(data)
             let taskList = ""
             for (task of data.tasks) {
-                btn = document.createElement("input")
-                btn.type = "button"
-                btn.value = task
+                btn = document.createElement("button")
+                btn.textContent = task
                 document.body.appendChild(btn)
                 btn.addEventListener("click", deleteTodo)
             }
@@ -74,7 +73,7 @@ function deleteUser() {
 
 function deleteTodo() {
     const user = document.getElementById("feedback").textContent
-    const task = event.srcElement.value
+    const task = event.srcElement.textContent
     const feedbackElement = document.getElementById("feedback")
     
     fetch("/user", {
