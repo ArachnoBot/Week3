@@ -39,6 +39,7 @@ async function search() {
             for (task of data.tasks) {
                 btn = document.createElement("button")
                 btn.textContent = task
+                btn.classList.add("delete-task")
                 document.body.appendChild(btn)
                 btn.addEventListener("click", deleteTodo)
             }
